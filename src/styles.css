@@ -1,0 +1,136 @@
+body {
+  font-family: "Roboto", sans-serif;
+  color: #fff;
+  text-align: center;
+}
+
+form {
+  background-color: #5669f7;
+  margin: 0 auto;
+  width: 300px;
+  height: 44px;
+  border-radius: 5px;
+  display: flex;
+}
+
+input {
+  all: unset;
+  font: 16px system-ui;
+  color: #fff;
+  height: 100%;
+  width: 100%;
+  margin: -5px;
+  padding: 6px 10px;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+}
+
+svg {
+  color: #fff;
+  fill: currentColor;
+  margin: 7px;
+}
+
+.temperature {
+  font-size: 50px;
+  margin: 50px 0 10px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 50px;
+}
+
+a {
+  color: #5669f7;
+  font-size: 20px;
+  opacity: 0.5;
+  position: relative;
+  top: -19px;
+  right: 10px;
+  text-decoration: none;
+}
+
+footer {
+  opacity: 0.8;
+  margin-bottom: 0%;
+  padding: 0;
+}
+
+svg:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.container {
+  background: #3745c2;
+  box-shadow: 3px 3px 30px rgba(0 0 0 / 0.1);
+  border-radius: 6px;
+  width: 28%;
+  margin: 5px auto;
+  padding: 20px;
+}
+
+.weather-looks {
+  margin: 40px;
+  margin-bottom: 30px;
+  font-size: 40px;
+}
+
+.date {
+  font-size: 16px;
+  padding: 0%;
+  margin-bottom: 30px;
+}
+
+.mid {
+  font-size: 20px;
+  word-spacing: 20px;
+  margin-top: 30px;
+}
+
+.card-humidity {
+  float: left;
+}
+
+.card-wind {
+  float: right;
+}
+
+.foot {
+  margin: 10px 0;
+  margin-bottom: 0%;
+}
+
+.day {
+  font-size: 25px;
+  text-align: left;
+  position: relative;
+  left: 60px;
+}
+
+.hilow-temp {
+  font-size: 25px;
+  position: relative;
+  bottom: 52px;
+  left: 120px;
+}
+
+::placeholder {
+  color: #fff;
+  opacity: 0.7;
+}
+
+.celsius {
+  display: inline-block;
+}
+
+.fahrenheit {
+  display: inline-block;
+  margin-top: 0;
+}
