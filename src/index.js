@@ -14,7 +14,7 @@ function search(city) {
 
 function showCurrentTemperature(response) {
   console.log(response.data);
-  document.querySelector("h1").innerHTML = response.data.name;
+  document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#looks-like").innerHTML =
     response.data.weather[0].main;
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
@@ -75,11 +75,18 @@ let days = [
 
 let showDate = new Date();
 
-let date = document.querySelector("small");
+let date = document.querySelector("#date");
 
 let currentDate = days[showDate.getDay()];
 let currentTime = showDate.getHours();
 let minutes = showDate.getMinutes();
+
+if (currentTime<10) {
+  currentTime =`0${currentTime}`;
+}
+if (minutes<10) {
+  minutes = `0${minutes}`;
+}
 
 date.innerHTML = `${currentDate} ${currentTime}:${minutes}`;
 
