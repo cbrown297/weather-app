@@ -13,50 +13,52 @@
   </head>
   <body>
     <div class="container">
-      <form id="search-form">
-        <input
-          type="search"
-          placeholder="Search City, State, or Country"
-          aria-label="Search for an areas weather"
-          autocomplete="off"
-          autofocus="on"
-          id="search-text-input"
-        />
-        <button class="search-icon">
-          <svg viewBox="0 0 1024 1024">
+      <div class="weather-app">
+        <form id="search-form">
+          <input
+            type="search"
+            placeholder="Search City, State, or Country"
+            aria-label="Search for an areas weather"
+            autocomplete="off"
+            autofocus="on"
+            id="search-text-input"
+          />
+          <button class="search-icon">
+            <svg viewBox="0 0 1024 1024">
             <path
               class="path1"
               d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z"
             ></path>
-          </svg>
-        </button>
-      </form>
-      <input
-        type="button"
-        class="current-btn"
-        id="current-btn"
-        value="Current Location"
-      />
-      <div class="head">
-        <h2 class="weather-looks" id="looks-like"></h2>
-        <div class="temperature" id="current-temp"></div>
-          <div class="units">
-            <a href="#" id="fahrenheit">℉</a>
-            |<a href="#" id="celsius">℃</a></span></div>
-            <h1 class="city" id="city"></h1>
-            <small class="date" id="date"> </small>
-      </div>
-      <div class="mid">
-        <div class="row">
-          <div class="col">
-            <p>Humidity: <span id="humidity"></span>%</p>
-          </div>
-          <div class="col">
-            <p>Wind: <span id="wind"></span>mph</p>  
+            </svg>
+          </button>
+        </form>
+        <input
+          type="button"
+          class="current-btn"
+          id="current-btn"
+          value="Current Location"
+        />
+        <div class="head">
+            <h2 class="weather-looks" id="looks-like"></h2>
+          <div class="temperature" id="current-temp"></div>
+            <div class="units">
+              <a href="#" id="fahrenheit">℉</a>
+              |<a href="#" id="celsius">℃</a></span></div>
+              <h1 class="city" id="city"></h1>
+              <small class="date" id="date"> </small>
+        </div>
+        <div class="mid">
+          <div class="row">
+            <div class="col">
+              <p>Humidity: <span id="humidity"></span>%</p>
+            </div>
+            <div class="col">
+              <p>Wind: <span id="wind"></span>mph</p>  
+            </div>
           </div>
         </div>
+        <footer>This page was coded by Claudia Brown</footer>
       </div>
-      <footer>This page was coded by Claudia Brown</footer>
     </div>
     <a href="https://github.com/cbrown297/weather-app" target="_blank" class="github-link">Github Repository</a>
     <script src="src/index.js"></script>
