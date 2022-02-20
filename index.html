@@ -39,13 +39,21 @@
           value="Current Location"
         />
         <div class="head">
-            <h2 class="weather-looks" id="looks-like"></h2>
-          <div class="temperature" id="current-temp"></div>
-            <div class="units">
-              <a href="#" id="fahrenheit">℉</a>
-              |<a href="#" id="celsius">℃</a></span></div>
+          <h2 class="weather-looks" id="looks-like"></h2>
+          <i class="fa-thin fa-sun"></i>
+          <div class="row">
+            <div class="col-6">
+              <div class="temperature" id="current-temp"></div>
+            </div>
+            <div class="col-6">
+              <div class="units">
+                <a href="#" id="fahrenheit">℉</a>
+              | <a href="#" id="celsius">℃</a></span></div>
+              </div>
+            </div>
               <h1 class="city" id="city"></h1>
-              <small class="date" id="date"> </small>
+              <small class="date" id="date"></small>
+          </div>
         </div>
         <div class="mid">
           <div class="row">
@@ -53,14 +61,12 @@
               <p>Humidity: <span id="humidity"></span>%</p>
             </div>
             <div class="col">
-              <p>Wind: <span id="wind"></span>mph</p>  
+              <p>Wind: <span id="wind"></span>mph</p>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <a href="https://github.com/cbrown297/weather-app" target="_blank" class="github-link"> Open Source Code</a>
-    <small>by Claudia Brown</small>
+    </div>    
     <script src="src/index.js"></script>
   </body>
 </html>
