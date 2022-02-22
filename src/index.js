@@ -1,69 +1,21 @@
-function handleSubmit(event) {
-  event.preventDefault();
-  let city = document.querySelector("#search-text-input").value;
-  search(city);
-}
-
-function search(city) {
-  let units = "&units=imperial";
-  let apiKey = "&appid=cfdab66ad524dca3797a910286a0542f";
-  let api = "https://api.openweathermap.org/data/2.5/weather?q=";
-  let apiUrl = `${api}${city}${apiKey}${units}`;
-  axios.get(apiUrl).then(showCurrentTemperature);
-}
-
-function showCurrentTemperature(response) {
-  console.log(response.data);
+function displayTemperature(response) {
+  console.log(response.data)
   document.querySelector("#city").innerHTML = response.data.name;
-  document.querySelector("#looks-like").innerHTML =
-    response.data.weather[0].main;
+  document.querySelector("#looks-like").innerHTML = response.data.weather[0].description;
+  document.querySelector("#weather-icon").setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+  document.querySelector("#temperature").innerHTML = Math.round(response.data.main.temp);
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
-  document.querySelector("#wind").innerHTML = Math.round(
-    response.data.wind.speed
-  );
-  document.querySelector("#current-temp").innerHTML = Math.round(
-    response.data.main.temp
-  );
+  document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
+  document.querySelector("#date").innerHTML = formatDate(response.data.dt *1000);
+  document.querySelector("weather-icon").setAttribute("alt", `${response.data.weather[0].description}`)
+  fahrenheitTemperature = response.data.main.temp;
 }
 
-function getCurrentLocation(event) {
-  event.preventDefault();
-  navigator.geolocation.getCurrentPosition(searchLocation);
-}
-
-function searchLocation(position) {
-  let apiKey = "&appid=cfdab66ad524dca3797a910286a0542f";
-  let api = "https://api.openweathermap.org/data/2.5/weather?";
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
-  let units = "&units=imperial";
-  let apiUrl = `${api}lat=${lat}&lon=${lon}${apiKey}${units}`;
-  axios.get(apiUrl).then(showCurrentTemperature);
-}
-
-function convertToF(event) {
-  event.preventDefault();
-  document.querySelector("#current-temp").innerHTML = 22;
-}
-
-function convertToC(event) {
-  event.preventDefault();
-  document.querySelector("#current-temp").innerHTML = 16;
-}
-
-let currentLocation = document.querySelector("#current-btn");
-currentLocation.addEventListener("click", getCurrentLocation);
-
-let form = document.querySelector("#search-form");
-form.addEventListener("submit", handleSubmit);
-
-let fTemp = document.querySelector("#fahrenheit");
-fTemp.addEventListener("click", convertToF);
-
-let cTemp = document.querySelector("#celsius");
-cTemp.addEventListener("click", convertToC);
-
-let days = [
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  let days = [
   "Sunday",
   "Monday",
   "Tuesday",
@@ -71,23 +23,54 @@ let days = [
   "Thursday",
   "Friday",
   "Saturday"
-];
-
-let showDate = new Date();
-
-let date = document.querySelector("#date");
-
-let currentDate = days[showDate.getDay()];
-let currentTime = showDate.getHours();
-let minutes = showDate.getMinutes();
-
-if (currentTime<10) {
-  currentTime =`0${currentTime}`;
-}
-if (minutes<10) {
+  ];
+  let day = days[date.getDay()];
+  if (hours<10) {
+  hours =`0${hours}`;
+  }
+  if (minutes<10) {
   minutes = `0${minutes}`;
+  }
+  return `${day} ${hours}:${minutes}`;    
 }
 
-date.innerHTML = `${currentDate} ${currentTime}:${minutes}`;
+function search(city) {
+  let api ="https://api.openweathermap.org/data/2.5/weather?q="
+  let apiKey ="&appid=cfdab66ad524dca3797a910286a0542f"
+  let units ="&units=imperial"
+  let url=`${api}${city}${apiKey}${units}`
+  axios.get(url).then(displayTemperature);
+}
 
-search("New York");
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityElement = document.querySelector("#city-input");
+  search(cityElement.value);
+}
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  let celsiusTemperature = (fahrenheitTemperature-32)/1.8;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+
+let fahrenheitTemperature = null;
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit)
+
+let fahrenheit = document.querySelector("#fahrenheit-link");
+fahrenheit.addEventListener("click", displayFahrenheitTemperature);
+
+let celsius = document.querySelector("#celsius-link");
+celsius.addEventListener("click", displayCelsiusTemperature);
+
+search("Scotland")
