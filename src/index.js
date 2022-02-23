@@ -52,14 +52,13 @@ function displayCelsiusTemperature(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
   let celsiusTemperature = (fahrenheitTemperature-32)/1.8;
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
 function displayFahrenheitTemperature(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
-  let fahrenheitTemperature= (celsiusTemperature * 9) / 5 + 32
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
 
 
