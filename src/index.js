@@ -3,12 +3,12 @@ function displayTemperature(response) {
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#looks-like").innerHTML = response.data.weather[0].description;
   document.querySelector("#weather-icon").setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
-  document.querySelector("#temperature").innerHTML = Math.round(response.data.main.temp);
+  document.querySelector("#temperature").innerHTML = Math.round(fahrenheitTemperature);
+  fahrenheitTemperature = response.data.main.temp;
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
   document.querySelector("#date").innerHTML = formatDate(response.data.dt *1000);
   document.querySelector("weather-icon").setAttribute("alt", `${response.data.weather[0].description}`)
-  fahrenheitTemperature = response.data.main.temp;
 }
 
 function formatDate(timestamp) {
@@ -58,6 +58,7 @@ function displayCelsiusTemperature(event) {
 function displayFahrenheitTemperature(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
+  let fahrenheitTemperature= (celsiusTemperature * 9) / 5 + 32
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 
