@@ -4,7 +4,7 @@ function getForecast(coordinates) {
   let apiKey ="&appid=cfdab66ad524dca3797a910286a0542f"
   let units ="&units=imperial"
   let apiUrl = `${api}lat=${coordinates.lat}&lon=${coordinates.lon}${apiKey}${units}`;
-  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function displayTemperature(response) {
@@ -16,16 +16,18 @@ function displayTemperature(response) {
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
   document.querySelector("#date").innerHTML = formatDate(response.data.dt *1000);
-  let iconElement = document.querySelector("weather-icon");
-  iconElement.setAttribute("alt", response.data.weather[0].description);
+  document.querySelector("#weather-icon").setAttribute("alt", response.data.weather[0].description);
 
   getForecast(response.data.coord);
 }
 
 function formatDate(timestamp) {
   let date = new Date(timestamp);
+
   let hours = date.getHours();
+
   let minutes = date.getMinutes();
+
   let days = [
   "Sunday",
   "Monday",
@@ -35,6 +37,7 @@ function formatDate(timestamp) {
   "Friday",
   "Saturday"
   ];
+
   let day = days[date.getDay()];
   if (hours<10) {
   hours =`0${hours}`;
@@ -45,11 +48,14 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;    
 }
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
+
   let days = ["Thu", "Fri", "Sat", "Sun"];
+
   days.forEach(function(day) {
     forecastHTML = forecastHTML + `
     <div class="col-3">
@@ -63,6 +69,7 @@ function displayForecast() {
   `;
   })
   forecastHTML = forecastHTML + `</div>`;
+
   forecastElement.innerHTML = forecastHTML;
 }
 
