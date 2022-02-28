@@ -8,11 +8,12 @@ function getForecast(coordinates) {
 }
 
 function displayTemperature(response) {
+  console.log(response);
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#looks-like").innerHTML = response.data.weather[0].description;
   document.querySelector("#weather-icon").setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
-  document.querySelector("#temperature").innerHTML = Math.round(fahrenheitTemperature);
-  fahrenheitTemperature = response.data.main.temp;
+  document.querySelector("#temperature").innerHTML = Math.round(response.data.main.temp);
+  /*fahreneheitTemperature = response.data.main.temp;*/ 
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
   document.querySelector("#date").innerHTML = formatDate(response.data.dt *1000);
@@ -52,7 +53,7 @@ function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
 
-  let days = ["Sun", "Mon","Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  let days = ["Sun", "Mon","Tue", "Wed", "Thu", "Fri", "Sat"];
 
   return days[day];
 }
@@ -105,9 +106,16 @@ function handleSubmit(event) {
   search(cityElement.value);
 }
 
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit)
 
-function displayCelsiusTemperature(event) {
+
+search("Scotland");
+
+/*function displayCelsiusTemperature(event) {
   event.preventDefault();
+  fahrenheit.classList.remove("active");
+  celsius.classList.add("active");
   let temperatureElement = document.querySelector("#temperature");
   let celsiusTemperature = (fahrenheitTemperature-32)/1.8;
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
@@ -115,20 +123,16 @@ function displayCelsiusTemperature(event) {
 
 function displayFahrenheitTemperature(event) {
   event.preventDefault();
+  fahrenheit.classList.add("active");
+  celsius.classList.remove("active");
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
 }
 
-let form = document.querySelector("#search-form");
-form.addEventListener("submit", handleSubmit)
+let fahrenheitTemperature = null;
 
 let fahrenheit = document.querySelector("#fahrenheit-link");
 fahrenheit.addEventListener("click", displayFahrenheitTemperature);
 
 let celsius = document.querySelector("#celsius-link");
-celsius.addEventListener("click", displayCelsiusTemperature);
-
-fahrenheitTemperature = null;
-
-search("Scotland");
-displayForecast();
+celsius.addEventListener("click", displayCelsiusTemperature);*/

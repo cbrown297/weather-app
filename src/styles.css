@@ -67,20 +67,11 @@ li {
   display: inline;
 }
 
-.weather-temp .units {
+.weather-temp .unit {
   position: relative;
   bottom: 21px;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 400;
-  color: #96A0A6;
-}
-
-.celsius-link {
-  text-decoration: none;
-}
-
-.weather-temp .active {
-  text-decoration: none;
   color: #96A0A6;
 }
 
