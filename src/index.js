@@ -1,5 +1,10 @@
 function getForecast(coordinates) {
-  console.log(coordinates.lat);
+  console.log(coordinates);
+  let api = "https://api.openweathermap.org/data/2.5/onecall?"
+  let apiKey ="&appid=cfdab66ad524dca3797a910286a0542f"
+  let units ="&units=imperial"
+  let apiUrl = `${api}lat=${coordinates.lat}&lon=${coordinates.lon}${apiKey}${units}`;
+  console.log(apiUrl);
 }
 
 function displayTemperature(response) {
